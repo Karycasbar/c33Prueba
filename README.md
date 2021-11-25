@@ -1,2 +1,2 @@
-# AngryBirdC25
-Clase 25 completa
+# angryBirdsStage2
+Angry Birds stage 2 with Class Inheritance and Images
