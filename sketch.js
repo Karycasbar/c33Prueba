@@ -8,9 +8,12 @@ var box1, pig1;
 var backgroundImg;
 var platform;
 var log6, slingshot;
+var estado = "onSling"
+var score = 0;
 
 function preload() {
-    backgroundImg = loadImage("sprites/bg.png");
+    //backgroundImg = loadImage("sprites/bg.png");
+    getBackgroundImg();
 }
 
 function setup(){
@@ -44,12 +47,20 @@ function setup(){
 
     
     
-    
+    //getTime();
 
 }
 
 function draw(){
+    if(backgroundImg){ 
     background(backgroundImg);
+    }
+
+    noStroke();
+    textSize(35);
+    fill("white");
+    text("Puntuacion: "+score, width-300,50);
+
     Engine.update(engine);
     /*console.log(box2.body.position.x);
     console.log(box2.body.position.y);
@@ -58,11 +69,13 @@ function draw(){
     box2.display();
     ground.display();
     pig1.display();
+    pig1.score();
     log1.display();
 
     box3.display();
     box4.display();
     pig3.display();
+    pig3.score();
     log3.display();
 
     box5.display();
@@ -77,13 +90,34 @@ function draw(){
     
 }
 function mouseDragged(){
+    //if(estado !== "launched"){ 
     Matter.Body.setPosition(bird.body,{x:mouseX, y:mouseY});
+    //}
 }
 function mouseReleased(){
     slingshot.fly();
+    estado = "launched";
 }
 function keyPressed(){
     if(keyCode === 32){
+        bird.trajectory = [];
+        Matter.Body.setPosition(bird.body,{x:200,y:50});
         slingshot.attach(bird.body);
     }
+}
+async function getBackgroundImg(){
+    var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Tokyo");
+    var responseJSON = await response.json();
+    console.log(responseJSON.datetime);
+    var datetime = responseJSON.datetime;
+    var hour = datetime.slice(11,13);
+    console.log(hour);
+
+    if(hour >= 06 && hour <= 19){
+        bg = "sprites/bg.png";
+    }
+    else{
+        bg = "sprites/bg2.jpg";
+    }
+    backgroundImg = loadImage(bg);
 }
