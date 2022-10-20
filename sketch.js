@@ -11,6 +11,8 @@ var log6, slingshot;
 var estado = "onSling"
 var score = 0
 
+//Comentario de prueba
+
 function preload() {
     //backgroundImg = loadImage("sprites/bg.png");
     getBackgroundImg();
