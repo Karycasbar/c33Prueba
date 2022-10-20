@@ -9,7 +9,7 @@ var backgroundImg;
 var platform;
 var log6, slingshot;
 var estado = "onSling"
-var score = 0;
+var score = 0
 
 function preload() {
     //backgroundImg = loadImage("sprites/bg.png");
