@@ -123,3 +123,5 @@ async function getBackgroundImg(){
     }
     backgroundImg = loadImage(bg);
 }
+
+//Comentario de prueba
